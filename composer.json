@@ -1,0 +1,16 @@
+{
+    "name" : "ivan-novakov/saml-md-view",
+    "description" : "phpID Server",
+
+    "require" : {
+        "php" : ">=5.3.3",
+        "zendframework/zendframework" : "2.*"
+    },
+    
+    "autoload": {
+        "psr-0": {
+        	"MdView": "lib/"
+        }
+    }
+
+}
