@@ -48,7 +48,7 @@ class Parser
     {
         $mdString = file_get_contents($mdFile);
         if (false === $mdString) {
-            throw new Exception\ParseException(sprintf("Error reading file '%s'", $mdFile));
+            throw new Exception\FileNotFoundException($mdFile);
         }
         
         return $this->parseString($mdString);

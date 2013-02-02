@@ -48,7 +48,7 @@ class Entity
 
     /**
      * Returns true, if the entity is an IdP entity.
-     *
+     * FIXME - move to subclass
      * @return boolean
      */
     public function isIdp ()
@@ -63,7 +63,7 @@ class Entity
 
     /**
      * Returns true if the entity is a SP entity.
-     *
+     * FIXME - move to subclass
      * @return boolean
      */
     public function isSp ()
