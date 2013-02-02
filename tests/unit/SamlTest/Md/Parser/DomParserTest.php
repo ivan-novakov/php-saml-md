@@ -54,6 +54,15 @@ class DomParserTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    public function testCreateDocumentFromNode()
+    {
+        $dom = new \DOMDocument('1.0', 'utf-8');
+        $node = $dom->appendChild($dom->createElement('foo', 'bar'));
+        
+        $this->assertInstanceOf('DOMDocument', $this->parser->createDocumentFromNode($node));
+    }
+
+
     protected function _getMetadataString()
     {
         return file_get_contents($this->_getMetadataFilename());

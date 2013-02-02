@@ -1,12 +1,12 @@
 <?php
 
-use Saml\Md\Parser\Parser;
+use Saml\Md\Parser\MetadataParser;
 
 require __DIR__ . '/_common.php';
 
 $mdFile = __DIR__ . '/data/eduid-metadata.xml';
 
-$parser = new Parser();
+$parser = new MetadataParser();
 
 $collection = $parser->parseFile($mdFile);
 

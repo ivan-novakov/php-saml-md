@@ -2,6 +2,9 @@
 
 namespace Saml\Md\Parser;
 
+use Saml\Md\Entity;
+use \DOMDocument;
+
 
 class MetadataParser
 {
@@ -12,32 +15,48 @@ class MetadataParser
      */
     protected $domParser = null;
 
+    /**
+     * Entity factory.
+     * 
+     * @var Entity\EntityFactoryInterface
+     */
+    protected $entityFactory = null;
+
 
     /**
      * Constructor.
      * 
      * @param DomParser $domParser
+     * @param Entity\EntityFactoryInterface $entityFactory
      */
-    public function __construct(DomParser $domParser = null)
+    public function __construct(DomParser $domParser = null, Entity\EntityFactoryInterface $entityFactory = null)
     {
         if (null === $domParser) {
             $domParser = new DomParser();
         }
-        
         $this->domParser = $domParser;
+        
+        if (null === $entityFactory) {
+            $entityFactory = new Entity\EntityFactory();
+        }
+        $this->entityFactory = $entityFactory;
     }
 
 
-    public function parseDom(DomDocument $mdDom)
+    /**
+     * Parses the DOM and returns a collection of entities.
+     * 
+     * @param DOMDocument $mdDom
+     * @return Entity\Collection\Collection
+     */
+    public function parseDom(DOMDocument $mdDom)
     {
         $entityNodes = $mdDom->getElementsByTagName('EntityDescriptor');
         
-        $collection = new EntityCollection();
+        $collection = new Entity\Collection\Collection();
         foreach ($entityNodes as $entityNode) {
-            /* @var $entityNode DOMNode */
-            $entityDom = $this->domParser->createNewDomDocument();
-            $entityDom->appendChild($entityDom->importNode($entityNode, true));
-            $entity = new Entity($entityDom);
+            $entityDom = $this->domParser->createDocumentFromNode($entityNode);
+            $entity = $this->entityFactory->createEntity($entityDom);
             $collection->add($entity);
         }
         

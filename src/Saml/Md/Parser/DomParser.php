@@ -3,6 +3,7 @@
 namespace Saml\Md\Parser;
 
 use DOMDocument;
+use DOMNode;
 
 
 class DomParser
@@ -55,6 +56,21 @@ class DomParser
      */
     public function createNewDomDocument($version = '1.0', $encoding = 'utf-8')
     {
-        return new DomDocument($version, $encoding);
+        return new DOMDocument($version, $encoding);
+    }
+
+
+    /**
+     * Creates a new DOM document from the provided DOM node.
+     * 
+     * @param DOMNode $node
+     * @return DOMDocument
+     */
+    public function createDocumentFromNode(DOMNode $node)
+    {
+        $dom = $this->createNewDomDocument();
+        $dom->appendChild($dom->importNode($node, true));
+        
+        return $dom;
     }
 }
