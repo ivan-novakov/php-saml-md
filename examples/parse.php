@@ -1,6 +1,6 @@
 <?php
 
-use MdView\Parser\Parser;
+use Saml\Md\Parser\Parser;
 
 require __DIR__ . '/_common.php';
 

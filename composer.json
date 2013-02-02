@@ -1,6 +1,6 @@
 {
     "name" : "ivan-novakov/saml-md-view",
-    "description" : "phpID Server",
+    "description" : "PHP library for parsing SAML metadata",
 
     "require" : {
         "php" : ">=5.3.3",
@@ -9,7 +9,7 @@
     
     "autoload": {
         "psr-0": {
-        	"MdView": "lib/"
+        	"Saml": "src/"
         }
     }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace MdView\Parser;
+namespace Saml\Md\Parser;
 
-use MdView\Entity\Entity;
-use MdView\Entity\EntityCollection;
+use Saml\Md\Entity\Entity;
+use Saml\Md\Entity\EntityCollection;
 use DOMDocument;
 
 

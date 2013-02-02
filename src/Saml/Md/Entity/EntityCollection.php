@@ -1,6 +1,6 @@
 <?php
 
-namespace MdView\Entity;
+namespace Saml\Md\Entity;
 
 
 class EntityCollection implements \Countable, \IteratorAggregate

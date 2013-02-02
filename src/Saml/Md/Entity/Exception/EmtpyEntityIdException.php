@@ -1,6 +1,6 @@
 <?php
 
-namespace MdView\Entity\Exception;
+namespace Saml\Md\Entity\Exception;
 
 class EmptyEntityIdException extends \RuntimeException
 {}
