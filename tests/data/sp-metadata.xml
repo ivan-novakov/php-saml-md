@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+  ID="_a7a74d08eceea8483c544f8bb2e6ce7e"
+  entityID="https://edev.cesnet.cz/sp/shibboleth">
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol">
+
+      <md:Extensions>
+        <DiscoveryResponse xmlns="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+        Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+        Location="https://edev.cesnet.cz/Shibboleth.sso/DS" index="1" />
+      </md:Extensions>
+      
+      <md:KeyDescriptor use="signing">
+        <ds:KeyInfo>
+          <ds:KeyName>edev.cesnet.cz</ds:KeyName>
+          <ds:X509Data>
+            <ds:X509SubjectName>CN=edev.cesnet.cz,O=CESNET,L=Prague,ST=Czech
+            Republic,C=CZ</ds:X509SubjectName>
+            <ds:X509Certificate>
+            MIIDPjCCAiYCCQCOJsi4C7DaXDANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJD
+            WjEXMBUGA1UECBMOQ3plY2ggUmVwdWJsaWMxDzANBgNVBAcTBlByYWd1ZTEPMA0G
+            A1UEChMGQ0VTTkVUMRcwFQYDVQQDEw5lZGV2LmNlc25ldC5jejAeFw0xMjEwMTAx
+            NzU2NDBaFw0yMjEwMDgxNzU2NDBaMGExCzAJBgNVBAYTAkNaMRcwFQYDVQQIEw5D
+            emVjaCBSZXB1YmxpYzEPMA0GA1UEBxMGUHJhZ3VlMQ8wDQYDVQQKEwZDRVNORVQx
+            FzAVBgNVBAMTDmVkZXYuY2VzbmV0LmN6MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+            MIIBCgKCAQEAqRDUJ+PwMSlE0IyXab2jcgfP2hT+fGUIOll5bOLvccECzS2GNAXO
+            1JyZG2RR5XJdLc8j+8ppGU/eU9KznI/hJK4OLJmJRSujQwnXGw8xbgUWTqL96BIM
+            t1++U4PxblhqU13SR1JwILkKIld1YpzmYZeUZSU8McGn0MWTNy52kuKMeGTB/bTG
+            yCnAIYymnRC+F7S1O5p00gZ8Y8fLAv4cuKA4gkss1PkbpbAEDl3vMFWYVrHSfQ40
+            ervXpIR8d+JjBEipdIi1S6+0XLu18bHuhiACBb0Yxvndi6Kf0x3LhebvDA26Ql3N
+            haZtUB18QHbJ1QHePbDrK3xKkt/mlBgOQQIDAQABMA0GCSqGSIb3DQEBBQUAA4IB
+            AQA3rep/ITfO4SeXlbpGUZQS/ez6Yjd9mQah/Wve3gRpp9G4FQRy2iuTCX3pDvne
+            Y5WdPUYhSdjbhnbvGmpbO5/QFh/gzWTUlXedmdmN5RJmIRzOHpAhdhQ9cCoKB/xL
+            TDrAqxoj+yQuQpjpMdTlhawqjkqee+cn7j8zGbR5HXpVM3cJPAMsRQx19sFWpnGX
+            QkpkQ90+gQMK2zAPvIXtZfVTK1F0xlZ6+4NYPuoC3C8xklxfwzNoiktEgtqFPzOB
+            Eq3JVPaoY+S7mCigJcJM/YAZFL+/m7SfG70iJt51GF5kfKGNQEK0A7t6+GD9RiKo
+            qAMOJmOQterSszZaX0mMz1k7</ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </md:KeyDescriptor>
+      
+      <md:KeyDescriptor use="encryption">
+        <ds:KeyInfo>
+          <ds:KeyName>edev.cesnet.cz</ds:KeyName>
+          <ds:X509Data>
+            <ds:X509SubjectName>CN=edev.cesnet.cz,O=CESNET,L=Prague,ST=Czech
+            Republic,C=CZ</ds:X509SubjectName>
+            <ds:X509Certificate>
+            MIIDPjCCAiYCCQCOJsi4C7DaXDANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJD
+            WjEXMBUGA1UECBMOQ3plY2ggUmVwdWJsaWMxDzANBgNVBAcTBlByYWd1ZTEPMA0G
+            A1UEChMGQ0VTTkVUMRcwFQYDVQQDEw5lZGV2LmNlc25ldC5jejAeFw0xMjEwMTAx
+            NzU2NDBaFw0yMjEwMDgxNzU2NDBaMGExCzAJBgNVBAYTAkNaMRcwFQYDVQQIEw5D
+            emVjaCBSZXB1YmxpYzEPMA0GA1UEBxMGUHJhZ3VlMQ8wDQYDVQQKEwZDRVNORVQx
+            FzAVBgNVBAMTDmVkZXYuY2VzbmV0LmN6MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+            MIIBCgKCAQEAqRDUJ+PwMSlE0IyXab2jcgfP2hT+fGUIOll5bOLvccECzS2GNAXO
+            1JyZG2RR5XJdLc8j+8ppGU/eU9KznI/hJK4OLJmJRSujQwnXGw8xbgUWTqL96BIM
+            t1++U4PxblhqU13SR1JwILkKIld1YpzmYZeUZSU8McGn0MWTNy52kuKMeGTB/bTG
+            yCnAIYymnRC+F7S1O5p00gZ8Y8fLAv4cuKA4gkss1PkbpbAEDl3vMFWYVrHSfQ40
+            ervXpIR8d+JjBEipdIi1S6+0XLu18bHuhiACBb0Yxvndi6Kf0x3LhebvDA26Ql3N
+            haZtUB18QHbJ1QHePbDrK3xKkt/mlBgOQQIDAQABMA0GCSqGSIb3DQEBBQUAA4IB
+            AQA3rep/ITfO4SeXlbpGUZQS/ez6Yjd9mQah/Wve3gRpp9G4FQRy2iuTCX3pDvne
+            Y5WdPUYhSdjbhnbvGmpbO5/QFh/gzWTUlXedmdmN5RJmIRzOHpAhdhQ9cCoKB/xL
+            TDrAqxoj+yQuQpjpMdTlhawqjkqee+cn7j8zGbR5HXpVM3cJPAMsRQx19sFWpnGX
+            QkpkQ90+gQMK2zAPvIXtZfVTK1F0xlZ6+4NYPuoC3C8xklxfwzNoiktEgtqFPzOB
+            Eq3JVPaoY+S7mCigJcJM/YAZFL+/m7SfG70iJt51GF5kfKGNQEK0A7t6+GD9RiKo
+            qAMOJmOQterSszZaX0mMz1k7</ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </md:KeyDescriptor>
+      
+      <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/Artifact/SOAP"
+      index="1" />
+      <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SLO/SOAP" />
+      <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SLO/Redirect" />
+      <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SLO/POST" />
+      <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SLO/Artifact" />
+      <md:ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/NIM/SOAP" />
+      <md:ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/NIM/Redirect" />
+      <md:ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/NIM/POST" />
+      <md:ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/NIM/Artifact" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML2/POST" index="1" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML2/POST-SimpleSign"
+      index="2" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML2/Artifact"
+      index="3" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML2/ECP" index="4" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML/POST" index="5" />
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01"
+      Location="https://edev.cesnet.cz/Shibboleth.sso/SAML/Artifact"
+      index="6" />
+    </md:SPSSODescriptor>
+
+    <Organization>
+      <OrganizationName xml:lang="en">CESNET</OrganizationName>
+      <OrganizationName xml:lang="cs">CESNET</OrganizationName>
+      <OrganizationDisplayName xml:lang="en">CESNET</OrganizationDisplayName>
+      <OrganizationDisplayName xml:lang="cs">CESNET, z. s. p. o.</OrganizationDisplayName>
+      <OrganizationURL xml:lang="en">http://www.ces.net/</OrganizationURL>
+      <OrganizationURL xml:lang="cs">http://www.cesnet.cz/</OrganizationURL>
+    </Organization>
+
+    <ContactPerson contactType="technical">
+      <GivenName>Ivan</GivenName>
+      <SurName>Novakov</SurName>
+      <EmailAddress>novakoi@fel.cvut.cz</EmailAddress>
+    </ContactPerson>
+
+</md:EntityDescriptor>

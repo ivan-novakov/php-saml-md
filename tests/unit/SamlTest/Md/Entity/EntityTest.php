@@ -33,4 +33,10 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(Entity::TYPE_IDP, $this->entity->getType());
     }
+
+
+    public function testGetXpath()
+    {
+        $this->assertInstanceOf('DOMXPath', $this->entity->getXpath());
+    }
 }

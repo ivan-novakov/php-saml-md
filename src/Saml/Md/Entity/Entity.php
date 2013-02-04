@@ -2,6 +2,8 @@
 
 namespace Saml\Md\Entity;
 
+use Saml\Md\Parser\XpathFactory;
+
 
 class Entity
 {
@@ -16,12 +18,44 @@ class Entity
 
     const TYPE_IDP = 'idp';
 
+    const XML_NS_DEFAULT = 'urn:oasis:names:tc:SAML:2.0:metadata';
+
+    const XML_NS_XML = 'http://www.w3.org/XML/1998/namespace';
+
     /**
      * The DOM representation of the entity XML.
      *
      * @var \DOMDocument
      */
-    protected $_dom = null;
+    protected $dom = null;
+
+    /**
+     * DOM XPath 
+     * @var \DOMXPath
+     */
+    protected $xpath = null;
+
+    /**
+     * The Xpath factory.
+     * 
+     * @var XpathFactory
+     */
+    protected $xpathFactory = null;
+
+    /**
+     * XPath namespaces
+     * 
+     * @var array
+     */
+    protected $xpathNamespaces = array(
+        'md' => self::XML_NS_DEFAULT,
+        'xml' => 'http://www.w3.org/XML/1998/namespace',
+        'ds' => 'http://www.w3.org/2000/09/xmldsig#',
+        'xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+        'shibmd' => 'urn:mace:shibboleth:metadata:1.0',
+        'mdui' => 'urn:oasis:names:tc:SAML:metadata:ui',
+        'eduidmd' => 'http://eduid.cz/schema/metadata/1.0'
+    );
 
 
     /**
@@ -29,9 +63,35 @@ class Entity
      *
      * @param \DOMDocument $entityDom            
      */
-    public function __construct (\DOMDocument $entityDom)
+    public function __construct(\DOMDocument $entityDom)
     {
-        $this->_dom = $entityDom;
+        $this->dom = $entityDom;
+    }
+
+
+    /**
+     * Sets the XPath factory.
+     * 
+     * @param XpathFactory $xpathFactory
+     */
+    public function setXpathFactory(XpathFactory $xpathFactory)
+    {
+        $this->xpathFactory = $xpathFactory;
+    }
+
+
+    /**
+     * Returns the XPath factory.
+     * 
+     * @return XpathFactory
+     */
+    public function getXpathFactory()
+    {
+        if (! ($this->xpathFactory instanceof XpathFactory)) {
+            $this->xpathFactory = new XpathFactory();
+        }
+        
+        return $this->xpathFactory;
     }
 
 
@@ -40,9 +100,9 @@ class Entity
      *
      * @return string
      */
-    public function getId ()
+    public function getId()
     {
-        return $this->_dom->documentElement->getAttribute(self::ENTITY_ID);
+        return $this->dom->documentElement->getAttribute(self::ENTITY_ID);
     }
 
 
@@ -51,7 +111,7 @@ class Entity
      * FIXME - move to subclass
      * @return boolean
      */
-    public function isIdp ()
+    public function isIdp()
     {
         try {
             return ($this->getType() == self::TYPE_IDP);
@@ -66,7 +126,7 @@ class Entity
      * FIXME - move to subclass
      * @return boolean
      */
-    public function isSp ()
+    public function isSp()
     {
         try {
             return ($this->getType() == self::TYPE_SP);
@@ -82,7 +142,7 @@ class Entity
      * @throws Exception\UnsupportedEntityTypeException
      * @return string
      */
-    public function getType ()
+    public function getType()
     {
         $rootChildElementNames = $this->_getRootChildElementNames();
         
@@ -98,10 +158,104 @@ class Entity
     }
 
 
-    protected function _getRootChildElementNames ()
+    /**
+     * Returns organization info.
+     * 
+     * @return array
+     */
+    public function getOrganizationInfo()
+    {
+        $info = array();
+        $node = $this->queryXpathSingleNode('/md:EntityDescriptor/md:Organization');
+        if ($node) {
+            foreach ($node->childNodes as $childNode) {
+                if ($childNode->nodeType == XML_ELEMENT_NODE) {
+                    $lang = $childNode->getAttributeNS(self::XML_NS_XML, 'lang');
+                    if ($lang) {
+                        $info[$lang][$childNode->tagName] = $childNode->nodeValue;
+                    }
+                }
+            }
+        }
+        
+        return $info;
+    }
+
+
+    /**
+     * Returns contact info.
+     * 
+     * @return array
+     */
+    public function getContactInfo()
+    {
+        $info = array();
+        $nodeList = $this->queryXpath('/md:EntityDescriptor/md:ContactPerson');
+        foreach ($nodeList as $node) {
+            $contact = array();
+            foreach ($node->childNodes as $childNode) {
+                if ($childNode->nodeType == XML_ELEMENT_NODE) {
+                    $contact['info'][$childNode->tagName] = $childNode->nodeValue;
+                }
+            }
+            $contact['type'] = $node->getAttribute('contactType');
+            $info[] = $contact;
+        }
+        
+        return $info;
+    }
+
+
+    /**
+     * Performs an XPath query.
+     * 
+     * @param string $xpathQuery
+     * @return \DOMNodeList
+     */
+    public function queryXpath($xpathQuery)
+    {
+        return $this->getXpath()
+            ->query($xpathQuery);
+    }
+
+
+    /**
+     * Performs an XPath query and returns a single node.
+     * 
+     * @param string $xpathQuery
+     * @return \DOMNode|null
+     */
+    public function queryXpathSingleNode($xpathQuery)
+    {
+        $nodeList = $this->queryXpath($xpathQuery);
+        if ($nodeList->length) {
+            return $nodeList->item(0);
+        }
+        
+        return null;
+    }
+
+
+    /**
+     * Returns the XPath object.
+     * 
+     * @return \DOMXPath
+     */
+    public function getXpath()
+    {
+        if (! ($this->xpath instanceof \DOMXPath)) {
+            $this->xpath = $this->getXpathFactory()
+                ->createXpath($this->dom);
+        }
+        
+        return $this->xpath;
+    }
+
+
+    protected function _getRootChildElementNames()
     {
         $names = array();
-        foreach ($this->_dom->documentElement->childNodes as $childNode) {
+        foreach ($this->dom->documentElement->childNodes as $childNode) {
             /* @var $childNode \DomNode */
             $names[] = $childNode->nodeName;
         }
