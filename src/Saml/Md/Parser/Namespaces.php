@@ -6,6 +6,8 @@ namespace Saml\Md\Parser;
 class Namespaces
 {
 
+    const NS_XML = 'http://www.w3.org/XML/1998/namespace';
+
     /**
      * SAML metadata namespaces
      *

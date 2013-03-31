@@ -2,6 +2,8 @@
 
 namespace Saml\Md\Entity;
 
+use Saml\Md\Parser\Namespaces;
+
 use Saml\Md\Parser\XpathFactory;
 
 
@@ -17,10 +19,6 @@ class Entity
     const TYPE_SP = 'sp';
 
     const TYPE_IDP = 'idp';
-
-    const XML_NS_DEFAULT = 'urn:oasis:names:tc:SAML:2.0:metadata';
-
-    const XML_NS_XML = 'http://www.w3.org/XML/1998/namespace';
 
     /**
      * The DOM representation of the entity XML.
@@ -41,21 +39,6 @@ class Entity
      * @var XpathFactory
      */
     protected $xpathFactory = null;
-
-    /**
-     * XPath namespaces
-     * 
-     * @var array
-     */
-    protected $xpathNamespaces = array(
-        'md' => self::XML_NS_DEFAULT,
-        'xml' => 'http://www.w3.org/XML/1998/namespace',
-        'ds' => 'http://www.w3.org/2000/09/xmldsig#',
-        'xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-        'shibmd' => 'urn:mace:shibboleth:metadata:1.0',
-        'mdui' => 'urn:oasis:names:tc:SAML:metadata:ui',
-        'eduidmd' => 'http://eduid.cz/schema/metadata/1.0'
-    );
 
 
     /**
@@ -170,7 +153,7 @@ class Entity
         if ($node) {
             foreach ($node->childNodes as $childNode) {
                 if ($childNode->nodeType == XML_ELEMENT_NODE) {
-                    $lang = $childNode->getAttributeNS(self::XML_NS_XML, 'lang');
+                    $lang = $childNode->getAttributeNS(Namespaces::NS_XML, 'lang');
                     if ($lang) {
                         $info[$lang][$childNode->tagName] = $childNode->nodeValue;
                     }
